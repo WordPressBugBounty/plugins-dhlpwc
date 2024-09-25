@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "dhlpwc/dhlpwc-block",
+  "version": "0.1.0",
+  "title": "DHL Shipping Methods block",
+  "category": "widgets",
+  "description": "Displays extra options for the DHL Shipping Methods like parcelshops and timeframes.",
+  "example": {},
+  "textdomain": "dhlpwc-block",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js",
+  "parent": [
+    "woocommerce/checkout-shipping-methods-block"
+  ],
+  "attributes": {
+    "lock": {
+      "type": "object",
+      "default": {
+        "remove": true,
+        "move": true
+      }
+    }
+  }
+}
