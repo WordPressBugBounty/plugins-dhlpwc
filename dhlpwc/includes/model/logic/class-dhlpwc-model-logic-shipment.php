@@ -215,6 +215,7 @@ class DHLPWC_Model_Logic_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
     protected function prepare_address_data($address, $business = false)
     {
         $address = $this->prepare_street_address($address);
+        $address = $this->format_postcode($address);
 
         return new DHLPWC_Model_API_Data_Shipment_Address(array(
             'name'          => array(
@@ -224,7 +225,7 @@ class DHLPWC_Model_Logic_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
             ),
             'address'       => array(
                 'country_code' => $address['country'],
-                'postal_code'  => WC_Validation::format_postcode($address['postcode'], $address['country']),
+                'postal_code'  => $address['postcode'],
                 'city'         => $address['city'],
                 'street'       => $address['street'],
                 'number'       => $address['number'],
@@ -234,6 +235,21 @@ class DHLPWC_Model_Logic_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
             'email'         => $address['email'],
             'phone_number' => $address['phone'],
         ));
+    }
+
+    protected function format_postcode($address)
+    {
+        $address['postcode'] = WC_Validation::format_postcode( $address['postcode'], $address['country'] );
+        switch ($address['country']) {
+            case 'CZ':
+            case 'DK':
+            case 'LV':
+            case 'SK':
+                $address['postcode'] = str_replace([$address['country'], '-'], '', $address['postcode']);
+                break;
+        }
+
+        return $address;
     }
 
     protected function prepare_street_address($address)

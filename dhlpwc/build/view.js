@@ -187,7 +187,7 @@ const Servicepoints = props => {
   // Only run this once, intentionally no dependencies given
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     const script = document.createElement('script');
-    script.src = 'https://static.dhlparcel.nl/components/servicepoint-locator-component@latest/servicepoint-locator-component.js';
+    script.src = 'https://static.dhlecommerce.nl/components/servicepoint-locator-component@latest/servicepoint-locator-component.js';
     script.async = true;
     script.onload = () => loadModal();
     document.body.appendChild(script);
@@ -511,14 +511,28 @@ const App = () => {
   // Only run this once, intentionally no dependencies given
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
     // Track selected shipping method
-    const shippingMethods = document.getElementsByClassName("wc-block-components-form wc-block-checkout__form")[0]['radio-control-0'];
-    if (shippingMethods) {
-      shippingMethods.forEach(element => {
-        element.addEventListener('change', event => {
-          setSelectedShippingMethod(event.target.value);
-        });
-      });
+    document.addEventListener("change", trackSelectedShippingMethod);
+    function trackSelectedShippingMethod(event) {
+      let element = event.target;
+      if (element.name === 'radio-control-0') {
+        setSelectedShippingMethod(event.target.value);
+      }
     }
+
+    /**
+     * Create observer for when shipping methods fundamentally change (WooCommerce does not call the Change method)
+     * We observe the parent of the radio buttons. When a shipping methods gets added or removed, we update the selectedShippingMethod
+     */
+    const observer = new MutationObserver(mutationList => {
+      for (const mutation of mutationList) {
+        if (mutation.type === "childList") {
+          setSelectedShippingMethod(document.getElementsByName('radio-control-0')[0].value);
+        }
+      }
+    });
+    observer.observe(document.getElementsByName('radio-control-0')[0].parentElement.parentElement, {
+      childList: true
+    });
 
     // TODO find a better method to retrieve address data instead of observing requests
     const nativeFetch = window.fetch;

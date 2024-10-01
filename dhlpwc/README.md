@@ -1,5 +1,10 @@
 # DHL eCommerce (Benelux) for WooCommerce
  
+v2.1.8
+## Changes
+- Updated tested up to version
+- Fixed an issue where ISO codes in postalcode would prevent label creation. Applies to Czechia, Denmark, Latvia and Slovakia
+ 
 v2.1.7
 ## Changes
 - Fixed the Download Label button in the popup shown after creating a label in the HPOS menu
