@@ -498,6 +498,20 @@ tr.dhlpwc-delivery-times-grid > td td:first-child {
     padding: 8px;
 }
 
+tr.dhlpwc-delivery-days-description > td table {
+    max-width: 700px;
+}
+
+tr.dhlpwc-delivery-days-description > td {
+    padding: 0;
+}
+
+tr.dhlpwc-delivery-days-description > td th {
+    width: auto;
+    padding: 15px 5px 0 0;
+    font-size: 20px;
+}
+
 .dhlpwc-delivery-times-shipping-day-content.dhlpwc-shipping-advice-asap {
     background: #eba3a3;
 }

@@ -6,10 +6,10 @@ if (!class_exists('DHLPWC_Model_Service_Track_Trace')) :
 
 class DHLPWC_Model_Service_Track_Trace extends DHLPWC_Model_Core_Singleton_Abstract
 {
-    protected $url = 'https://www.dhlparcel.nl/en/follow-your-shipment?tc={{trackerCode}}';
+    protected $url = 'https://my.dhlecommerce.nl/home/tracktrace/{{trackerCode}}';
     protected $alternate_urls = [
-        'NL' => 'https://my.dhlparcel.nl/home/tracktrace/{{trackerCode}}?lang={{locale}}',
-        'BE' => 'https://www.dhlparcel.be/nl/particulieren/volg-je-zending?tt={{trackerCode}}'
+        'NL' => 'https://my.dhlecommerce.nl/home/tracktrace/{{trackerCode}}?lang={{locale}}',
+        'BE' => 'https://my.dhlparcel.be/home/tracktrace/{{trackerCode}}',
     ];
 
     public function get_url($tracking_code = null, $locale = null, $country_code = null)

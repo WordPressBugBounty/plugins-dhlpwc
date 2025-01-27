@@ -360,6 +360,16 @@ class DHLPWC_Model_Service_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
                             }
                         }
                         break;
+                    case 'small_medium_only':
+                        foreach($sizes as $size) {
+                            /** @var DHLPWC_Model_API_Data_Parceltype $size */
+                            if (strtolower($size->key) === 'small_medium') {
+                                $piece['parcel_type'] = $size->key;
+                                $piece['quantity'] = 1;
+                                break;
+                            }
+                        }
+                        break;
                     case 'medium_only':
                         foreach($sizes as $size) {
                             /** @var DHLPWC_Model_API_Data_Parceltype $size */

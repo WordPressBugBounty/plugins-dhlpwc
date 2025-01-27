@@ -1,10 +1,10 @@
 === DHL eCommerce (Benelux) for WooCommerce ===
 Contributors:         dhlparcel, dhlsupport, shindhl, ronoerlemans, dennisdhl
 Tags:                 DHL, DHL eCommerce, WooCommerce, Shipping, Shipping rates
-Requires at least:    4.7.16
+Requires at least:    4.7
 Requires PHP:         5.6
 Tested up to:         6.6
-Stable tag:           2.1.8
+Stable tag:           2.1.10
 WC requires at least: 3.0.0
 WC tested up to:      9.0.2
 License:              GPL v3 or later
@@ -56,6 +56,11 @@ A “Google Maps API Key” is required if you wish to display DHL locations on 
 
 == Changelog ==
  
+= 2.1.10 =
+- Added SmallMedium size
+- Updated Limited Quantities and ServicePoint to exclude their services in the form
+- Fixed an issue where on certain custom checkouts the shipping method would incorrectly refresh the selection when using delivery times
+
 = 2.1.8 =
 - Updated tested up to version
 - Fixed an issue where ISO codes in postalcode would prevent label creation. Applies to Czechia, Denmark, Latvia and Slovakia

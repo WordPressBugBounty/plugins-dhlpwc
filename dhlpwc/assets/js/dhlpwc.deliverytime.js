@@ -31,8 +31,11 @@ jQuery(document).ready(function($) {
         };
 
         $.post(dhlpwc_delivery_time_object.ajax_url, data, function (response) {
-            // Select matching shipping method
-            $('[id^=shipping_method_][id$=_dhlpwc-'+frontend_id+']').attr('selected', 'selected').trigger("click");
+            // Select matching shipping method (only when on a delivery time method)
+            var value_check = $('[id^=shipping_method_]:checked').val();
+            if (typeof value_check !== 'undefined' && value_check.startsWith('dhlpwc-home')) {
+                $('[id^=shipping_method_][id$=_dhlpwc-' + frontend_id + ']').attr('selected', 'selected').trigger("click");
+            }
         });
 
     }).on('dhlpwc:update_delivery_time_visibility', function() {

@@ -221,6 +221,7 @@ class DHLPWC_Model_Logic_Access_Control extends DHLPWC_Model_Core_Singleton_Abst
             'envelope_only',
             'xsmall_only',
             'small_only',
+            'small_medium_only',
             'medium_only',
             'xlarge_only',
             'bulky_only',

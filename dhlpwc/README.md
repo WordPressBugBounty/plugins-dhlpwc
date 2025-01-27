@@ -1,5 +1,11 @@
 # DHL eCommerce (Benelux) for WooCommerce
  
+v2.1.10
+## Changes
+- Added SmallMedium size
+- Updated Limited Quantities and ServicePoint to exclude their services in the form
+- Fixed an issue where on certain custom checkouts the shipping method would incorrectly refresh the selection when using delivery times
+
 v2.1.8
 ## Changes
 - Updated tested up to version

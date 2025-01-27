@@ -57,15 +57,16 @@ class DHLPWC_Model_Service_Translation extends DHLPWC_Model_Core_Singleton_Abstr
         $key = strtoupper($key);
         if (!$this->parcel_types) {
             $this->parcel_types = [
-                'PARCELTYPE_ENVELOPE' => __('Envelope (50-500 grams)', 'dhlpwc'),
-                'PARCELTYPE_XSMALL'   => __('Extra Small', 'dhlpwc'),
-                'PARCELTYPE_SMALL'    => __('Small', 'dhlpwc'),
-                'PARCELTYPE_MEDIUM'   => __('Medium', 'dhlpwc'),
-                'PARCELTYPE_LARGE'    => __('Large', 'dhlpwc'),
-                'PARCELTYPE_PALLET'   => __('Pallet', 'dhlpwc'),
-                'PARCELTYPE_BULKY'    => __('Bulky', 'dhlpwc'),
-                'PARCELTYPE_ROLL'     => __('Roll', 'dhlpwc'),
-                'PARCELTYPE_XLARGE'   => __('Extra Large', 'dhlpwc'),
+                'PARCELTYPE_ENVELOPE'     => __('Envelope (50-500 grams)', 'dhlpwc'),
+                'PARCELTYPE_XSMALL'       => __('Extra Small', 'dhlpwc'),
+                'PARCELTYPE_SMALL'        => __('Small', 'dhlpwc'),
+                'PARCELTYPE_SMALL_MEDIUM' => __('Small-Medium', 'dhlpwc'),
+                'PARCELTYPE_MEDIUM'       => __('Medium', 'dhlpwc'),
+                'PARCELTYPE_LARGE'        => __('Large', 'dhlpwc'),
+                'PARCELTYPE_PALLET'       => __('Pallet', 'dhlpwc'),
+                'PARCELTYPE_BULKY'        => __('Bulky', 'dhlpwc'),
+                'PARCELTYPE_ROLL'         => __('Roll', 'dhlpwc'),
+                'PARCELTYPE_XLARGE'       => __('Extra Large', 'dhlpwc'),
             ];
         }
         if (!array_key_exists($key, $this->parcel_types)) {
@@ -79,15 +80,16 @@ class DHLPWC_Model_Service_Translation extends DHLPWC_Model_Core_Singleton_Abstr
         $key = strtoupper($key);
         if (!$this->bulk_operations) {
             $this->bulk_operations = [
-                'SMALLEST'      => __('Smallest', 'dhlpwc'),
-                'ENVELOPE_ONLY' => __('Envelope (50-500gr)', 'dhlpwc'),
-                'XSMALL_ONLY'   => __('Extra Small only', 'dhlpwc'),
-                'BP_ONLY'       => __('Mailbox only (0,5-2kg)', 'dhlpwc'),
-                'SMALL_ONLY'    => __('Small only', 'dhlpwc'),
-                'MEDIUM_ONLY'   => __('Medium only', 'dhlpwc'),
-                'XLARGE_ONLY'   => __('Extra Large only', 'dhlpwc'),
-                'BULKY_ONLY'    => __('Bulky only', 'dhlpwc'),
-                'LARGEST'       => __('Largest only', 'dhlpwc'),
+                'SMALLEST'          => __('Smallest', 'dhlpwc'),
+                'ENVELOPE_ONLY'     => __('Envelope (50-500gr)', 'dhlpwc'),
+                'XSMALL_ONLY'       => __('Extra Small only', 'dhlpwc'),
+                'BP_ONLY'           => __('Mailbox only (0,5-2kg)', 'dhlpwc'),
+                'SMALL_ONLY'        => __('Small only', 'dhlpwc'),
+                'SMALL_MEDIUM_ONLY' => __('Small-Medium only', 'dhlpwc'),
+                'MEDIUM_ONLY'       => __('Medium only', 'dhlpwc'),
+                'XLARGE_ONLY'       => __('Extra Large only', 'dhlpwc'),
+                'BULKY_ONLY'        => __('Bulky only', 'dhlpwc'),
+                'LARGEST'           => __('Largest only', 'dhlpwc'),
             ];
         }
         if (!array_key_exists($key, $this->bulk_operations)) {

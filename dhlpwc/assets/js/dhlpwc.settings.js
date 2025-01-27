@@ -51,6 +51,7 @@ jQuery(document).ready(function($) {
                     if ($('input#woocommerce_dhlpwc_account_id').val().length === 0) {
                         var value = info.accounts[0];
                         $('input#woocommerce_dhlpwc_account_id').val(value);
+                        $('input#woocommerce_dhlpwc_account_id').trigger('change');
                     }
                 }
 
@@ -138,6 +139,7 @@ jQuery(document).ready(function($) {
                     if ($('input#woocommerce_dhlpwc_printer_id').val().length === 0) {
                         var value = info.printers[0].id;
                         $('input#woocommerce_dhlpwc_printer_id').val(value);
+                        $('input#woocommerce_dhlpwc_printer_id').trigger('change');
                     }
                 }
 

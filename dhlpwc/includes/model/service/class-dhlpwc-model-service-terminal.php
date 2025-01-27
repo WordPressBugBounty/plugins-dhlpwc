@@ -7,7 +7,7 @@ if (!class_exists('DHLPWC_Model_Service_Terminal')) :
 class DHLPWC_Model_Service_Terminal extends DHLPWC_Model_Core_Singleton_Abstract
 {
 
-    protected $url = 'https://my.dhlparcel.nl/api/terminals/';
+    protected $url = 'https://my.dhlecommerce.nl/api/terminals/';
 
     public function __construct()
     {

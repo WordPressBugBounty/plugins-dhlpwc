@@ -338,6 +338,7 @@ class DHLPWC_Model_WooCommerce_Settings_Shipping_Method extends WC_Shipping_Meth
             $this->get_bulk_group_fields('xsmall_only', sprintf(__("Choose size '%s' only, skip if unavailable", 'dhlpwc'), DHLPWC_Model_Service_Translation::instance()->parcelType('PARCELTYPE_XSMALL'))),
             $this->get_bulk_group_fields('bp_only', __('Choose mailbox (0.5-2kg), skip if unavailable', 'dhlpwc')),
             $this->get_bulk_group_fields('small_only', sprintf(__("Choose size '%s' only, skip if unavailable", 'dhlpwc'), DHLPWC_Model_Service_Translation::instance()->parcelType('PARCELTYPE_SMALL'))),
+            $this->get_bulk_group_fields('small_medium_only', sprintf(__("Choose size '%s' only, skip if unavailable", 'dhlpwc'), DHLPWC_Model_Service_Translation::instance()->parcelType('PARCELTYPE_SMALL_MEDIUM'))),
             $this->get_bulk_group_fields('medium_only', sprintf(__("Choose size '%s' only, skip if unavailable", 'dhlpwc'), DHLPWC_Model_Service_Translation::instance()->parcelType('PARCELTYPE_MEDIUM'))),
             $this->get_bulk_group_fields('xlarge_only', sprintf(__("Choose size '%s' only, skip if unavailable", 'dhlpwc'), DHLPWC_Model_Service_Translation::instance()->parcelType('PARCELTYPE_XLARGE'))),
             $this->get_bulk_group_fields('bulky_only', sprintf(__("Choose size '%s' only, skip if unavailable", 'dhlpwc'), DHLPWC_Model_Service_Translation::instance()->parcelType('PARCELTYPE_BULKY'))),
@@ -821,6 +822,10 @@ class DHLPWC_Model_WooCommerce_Settings_Shipping_Method extends WC_Shipping_Meth
         );
 
         $shipping_days = array();
+        $shipping_days['delivery_days_description'] = array(
+            'type' => 'dhlpwc_delivery_days_description'
+        );
+
         foreach($days as $day => $day_text) {
             $shipping_days['enable_shipping_day_' . $day] = array(
                 'title'       => sprintf(__('Ship on %ss', 'dhlpwc'), $day_text),
@@ -1229,6 +1234,12 @@ class DHLPWC_Model_WooCommerce_Settings_Shipping_Method extends WC_Shipping_Meth
     protected function generate_dhlpwc_delivery_times_container_html($key, $data)
     {
         $view = new DHLPWC_Template('admin.settings.delivery-times-header');
+        return $view->render(array(), false);
+    }
+
+    protected function generate_dhlpwc_delivery_days_description_html($key, $data)
+    {
+        $view = new DHLPWC_Template('admin.settings.delivery-days-description');
         return $view->render(array(), false);
     }
 
