@@ -1,5 +1,10 @@
 # DHL eCommerce (Benelux) for WooCommerce
  
+v2.1.11
+## Changes
+- Fixed an issue with warning being generated when loading exclusions
+- Fixed a code flow issue that can occur during checkout when an orderID cannot be found
+ 
 v2.1.10
 ## Changes
 - Added SmallMedium size

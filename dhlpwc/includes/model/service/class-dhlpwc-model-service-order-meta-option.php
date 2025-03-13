@@ -475,14 +475,14 @@ class DHLPWC_Model_Service_Order_Meta_Option extends DHLPWC_Model_Core_Singleton
                 }
 
                 // Manually add LQ vs PS exclusion
-                if ($option->key === DHLPWC_Model_Meta_Order_Option_Preference::OPTION_LQ) {
-                    if (!in_array(DHLPWC_Model_Meta_Order_Option_Preference::OPTION_PS, $option->exclusions)) {
-                        $option->exclusion_list[] = DHLPWC_Model_Meta_Order_Option_Preference::OPTION_PS;
+                if ($option === DHLPWC_Model_Meta_Order_Option_Preference::OPTION_LQ) {
+                    if (!in_array(DHLPWC_Model_Meta_Order_Option_Preference::OPTION_PS, $exclusions)) {
+                        $exclusions[] = DHLPWC_Model_Meta_Order_Option_Preference::OPTION_PS;
                     }
                 }
-                if ($option->key === DHLPWC_Model_Meta_Order_Option_Preference::OPTION_PS) {
-                    if (!in_array(DHLPWC_Model_Meta_Order_Option_Preference::OPTION_LQ, $option->exclusions)) {
-                        $option->exclusion_list[] = DHLPWC_Model_Meta_Order_Option_Preference::OPTION_LQ;
+                if ($option === DHLPWC_Model_Meta_Order_Option_Preference::OPTION_PS) {
+                    if (!in_array(DHLPWC_Model_Meta_Order_Option_Preference::OPTION_LQ, $exclusions)) {
+                        $exclusions[] = DHLPWC_Model_Meta_Order_Option_Preference::OPTION_LQ;
                     }
                 }
             }

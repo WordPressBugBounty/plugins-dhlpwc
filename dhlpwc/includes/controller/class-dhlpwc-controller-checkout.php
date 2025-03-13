@@ -63,6 +63,13 @@ class DHLPWC_Controller_Checkout
 
     public function add_option_meta($order_id, $data)
     {
+        $order = wc_get_order( $order_id );
+        if (is_bool($order)) {
+            // Certain third party plugin filters might cause an issue with order IDs. Exit early in that case.
+            // The data won't be correctly saved with an order unfortunately because of this, but it's better than crashing
+            return;
+        }
+
         $service = DHLPWC_Model_Service_Shipping_Preset::instance();
         $presets = $service->get_presets();
 
