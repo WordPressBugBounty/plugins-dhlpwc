@@ -66,7 +66,7 @@ class DHLPWC_Model_Service_Debug extends DHLPWC_Model_Core_Singleton_Abstract
 
         // Unfortunately, we can only get the plugin version if it's in the admin section
         if (is_admin()) {
-            $plugin_data = get_plugin_data(DHLPWC_PLUGIN_FILE);
+            $plugin_data = get_plugin_data(DHLPWC_PLUGIN_FILE, true, false);
             $plugin_version = $plugin_data['Version'];
         } else {
             $plugin_version = 'N/A';

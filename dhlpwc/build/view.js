@@ -12,14 +12,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   DeliveryTimes: () => (/* binding */ DeliveryTimes)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -29,10 +29,13 @@ const DeliveryTimes = props => {
     return '';
   }
   const deliveryTimeShippingMethods = ['dhlpwc-home', 'dhlpwc-home-evening', 'dhlpwc-home-next-day', 'dhlpwc-home-no-neighbour', 'dhlpwc-home-no-neighbour-evening', 'dhlpwc-home-no-neighbour-next-day'];
-  const [deliveryTimes, setDeliveryTimes] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)({});
-  const [selectedTime, setSelectedTime] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+  const [deliveryTimes, setDeliveryTimes] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({});
+  const [selectedTime, setSelectedTime] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const deliveryTimeDetails = document.getElementById('dhlpwc-shipping-method-delivery-times-option');
+    if (deliveryTimeDetails === null) {
+      return;
+    }
     if (deliveryTimeShippingMethods.indexOf(props.selectedShippingMethod) !== -1) {
       deliveryTimeDetails.style.display = "block";
       // Wordpress doesn't like it when we post raw data, so we post it as a form instead
@@ -56,14 +59,14 @@ const DeliveryTimes = props => {
         });
         setDeliveryTimes(parsedDeliveryTimes);
         // initially set the first selection
-        setSelectedTime(parsedDeliveryTimes[0].value.split('___'));
+        if (typeof parsedDeliveryTimes[0] !== "undefined") setSelectedTime(parsedDeliveryTimes[0].value.split('___'));
       });
     } else {
       deliveryTimeDetails.style.display = "none";
       setSelectedTime([]);
     }
   }, [props.postalCode, props.countryCode, props.selectedShippingMethod]);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     var _selectedTime$, _selectedTime$2, _selectedTime$3;
     // Wordpress doesn't like it when we post raw data, so we post it as a form instead
     const formData = new FormData();
@@ -77,21 +80,24 @@ const DeliveryTimes = props => {
       body: formData
     });
   }, [selectedTime]);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     id: "dhlpwc-shipping-method-delivery-times-option",
-    className: "dhlpwc-shipping-method-delivery-times-option"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "dhlpwc-delivery-times-selection-header"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('DHL Delivery Times options')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: "dhlpwc-delivery-times-selection-text"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Desired delivery moment:')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    hideLabelFromVision: "true",
-    className: "dhlpwc-delivery-times-selection-input",
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Select desired delivery moment'),
-    value: selectedTime.join('___'),
-    options: deliveryTimes,
-    onChange: deliveryTime => setSelectedTime(deliveryTime.split('___'))
-  }));
+    className: "dhlpwc-shipping-method-delivery-times-option",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "dhlpwc-delivery-times-selection-header",
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('DHL Delivery Times options')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      className: "dhlpwc-delivery-times-selection-text",
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Desired delivery moment:')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+      hideLabelFromVision: "true",
+      className: "dhlpwc-delivery-times-selection-input",
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select desired delivery moment'),
+      value: selectedTime.join('___'),
+      options: deliveryTimes,
+      onChange: deliveryTime => setSelectedTime(deliveryTime.split('___'))
+    })]
+  });
 };
 
 /***/ }),
@@ -163,14 +169,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Servicepoints: () => (/* binding */ Servicepoints)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -178,14 +184,14 @@ __webpack_require__.r(__webpack_exports__);
 const Servicepoints = props => {
   var _parcelshop$name;
   const VALIDATION_ERROR_PARCELSHOP_EMPTY = 'validation-error-parcelshop-empty';
-  const getValidationError = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
+  const getValidationError = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
     const store = select('wc/store/validation');
     return store.getValidationError(VALIDATION_ERROR_PARCELSHOP_EMPTY);
   });
-  const [parcelshop, setParcelshop] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)({});
+  const [parcelshop, setParcelshop] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({});
 
   // Only run this once, intentionally no dependencies given
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const script = document.createElement('script');
     script.src = 'https://static.dhlecommerce.nl/components/servicepoint-locator-component@latest/servicepoint-locator-component.js';
     script.async = true;
@@ -208,30 +214,44 @@ const Servicepoints = props => {
         serviceType: 'pick-up'
       }
     };
-    window.dhlparcel_shipping_servicepoint_locator = new dhl.servicepoint.Locator(document.getElementById('dhl-servicepoint-locator-component'), options);
+    const servicePointElement = document.getElementById('dhl-servicepoint-locator-component');
+    if (servicePointElement === null) {
+      return;
+    }
+    window.dhlparcel_shipping_servicepoint_locator = new dhl.servicepoint.Locator(servicePointElement, options);
 
     // Hide the parcelshop element when parcelshop is not selected
     const parcelshopDetails = document.getElementById('dhlpwc-shipping-method-parcelshop-option');
-    if (props.selectedShippingMethod === 'dhlpwc-parcelshop') {
-      parcelshopDetails.style.display = 'block';
-    } else {
-      parcelshopDetails.style.display = 'none';
+    if (parcelshopDetails !== null) {
+      if (props.selectedShippingMethod === 'dhlpwc-parcelshop') {
+        parcelshopDetails.style.display = 'block';
+      } else {
+        parcelshopDetails.style.display = 'none';
+      }
     }
 
     // Hide the modal when clicking the X button
-    document.getElementById('dhlpwc-modal-close').onclick = () => {
-      document.getElementById('dhlpwc-servicepoint-modal').style.display = 'none';
-    };
+    const modalCloseElement = document.getElementById('dhlpwc-modal-close');
+    if (modalCloseElement !== null) {
+      modalCloseElement.onclick = () => {
+        const ServicePointModalElement = document.getElementById('dhlpwc-servicepoint-modal');
+        if (ServicePointModalElement) ServicePointModalElement.style.display = 'none';
+      };
+    }
 
     // Set background image dynamically
-    document.getElementById('dhlpwc-modal-content').style['background-image'] = 'url(' + window.dhlpwc_block_data['modal_background'] + ')';
+    const modalContentElement = document.getElementById('dhlpwc-modal-content');
+    if (modalContentElement !== null) modalContentElement.style['background-image'] = 'url(' + window.dhlpwc_block_data['modal_background'] + ')';
   };
 
   /**
    * Set the initial parcelshop based on postalCode or countryCode
    */
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const parcelshopDetails = document.getElementById('dhlpwc-shipping-method-parcelshop-option');
+    if (parcelshopDetails === null) {
+      return;
+    }
     if (props.selectedShippingMethod === 'dhlpwc-parcelshop') {
       parcelshopDetails.style.display = 'block';
 
@@ -259,15 +279,19 @@ const Servicepoints = props => {
   const {
     setValidationErrors,
     clearValidationError
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useDispatch)('wc/store/validation');
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)('wc/store/validation');
 
   /**
    * Sync the parcelshop (or lack of) with frontend elements and the backend
    *
    * @param parcelshop
    */
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    document.getElementById('dhlpwc-servicepoint-modal').style.display = 'none';
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const ServicePointModalElement = document.getElementById('dhlpwc-servicepoint-modal');
+    if (ServicePointModalElement === null) {
+      return;
+    }
+    ServicePointModalElement.style.display = 'none';
 
     // Wordpress doesn't like it when we post raw data, so we post it as a form instead
     const formData = new FormData();
@@ -284,7 +308,7 @@ const Servicepoints = props => {
       props.setValidationClass('dhlpwc-servicepoint-error');
       setValidationErrors({
         [VALIDATION_ERROR_PARCELSHOP_EMPTY]: {
-          message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Please add some text', 'shipping-workshop'),
+          message: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Please add some text', 'shipping-workshop'),
           hidden: true
         }
       });
@@ -303,40 +327,37 @@ const Servicepoints = props => {
       document.getElementById('shipping-postcode').value;
     }
     const modal = document.getElementById('dhlpwc-servicepoint-modal');
-    modal.style.display = 'block';
+    if (modal !== null) {
+      modal.style.display = 'block';
+    }
     if (typeof window.dhlparcel_shipping_servicepoint_locator !== 'undefined') {
       window.dhlparcel_shipping_servicepoint_locator.setCountry(props.countryCode);
       window.dhlparcel_shipping_servicepoint_locator.setQuery(props.postalCode);
     }
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     id: "dhlpwc-shipping-method-parcelshop-option",
-    className: "dhlpwc-shipping-method-parcelshop-option"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: "dhlpwc-parcelshop-selection-text"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('The following ServicePoint is selected:')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: `dhlpwc-parcelshop-option-message ${props.validationClass}`
-  }, (_parcelshop$name = parcelshop.name) !== null && _parcelshop$name !== void 0 ? _parcelshop$name : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('⚠ No location selected.')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: `dhlpwc-parcelshop-option-message ${props.validationClass}`
-  }, parcelshop?.address?.postal_code, " ", parcelshop?.address?.city), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    className: `dhlpwc-parcelshop-option-message ${props.validationClass}`
-  }, parcelshop?.address?.street, " ", parcelshop?.address?.number, " ", parcelshop?.address?.addition), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-    type: "button",
-    className: "dhlpwc-parcelshop-option-change",
-    value: "Change",
-    onClick: () => showModal()
-  }));
+    className: "dhlpwc-shipping-method-parcelshop-option",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      className: "dhlpwc-parcelshop-selection-text",
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('The following ServicePoint is selected:')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      className: `dhlpwc-parcelshop-option-message ${props.validationClass}`,
+      children: (_parcelshop$name = parcelshop.name) !== null && _parcelshop$name !== void 0 ? _parcelshop$name : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('⚠ No location selected.')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+      className: `dhlpwc-parcelshop-option-message ${props.validationClass}`,
+      children: [parcelshop?.address?.postal_code, " ", parcelshop?.address?.city]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+      className: `dhlpwc-parcelshop-option-message ${props.validationClass}`,
+      children: [parcelshop?.address?.street, " ", parcelshop?.address?.number, " ", parcelshop?.address?.addition]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+      type: "button",
+      className: "dhlpwc-parcelshop-option-change",
+      value: "Change",
+      onClick: () => showModal()
+    })]
+  });
 };
-
-/***/ }),
-
-/***/ "react":
-/*!************************!*\
-  !*** external "React" ***!
-  \************************/
-/***/ ((module) => {
-
-module.exports = window["React"];
 
 /***/ }),
 
@@ -387,6 +408,16 @@ module.exports = window["wp"]["element"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["ReactJSXRuntime"];
 
 /***/ })
 
@@ -459,7 +490,7 @@ module.exports = window["wp"]["i18n"];
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 (() => {
 /*!*********************!*\
   !*** ./src/view.js ***!
@@ -468,17 +499,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   App: () => (/* binding */ App)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/dom-ready */ "@wordpress/dom-ready");
-/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _servicepoints__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./servicepoints */ "./src/servicepoints.js");
-/* harmony import */ var _delivery_times__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./delivery-times */ "./src/delivery-times.js");
-/* harmony import */ var _same_day__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./same-day */ "./src/same-day.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/dom-ready */ "@wordpress/dom-ready");
+/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _servicepoints__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./servicepoints */ "./src/servicepoints.js");
+/* harmony import */ var _delivery_times__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./delivery-times */ "./src/delivery-times.js");
+/* harmony import */ var _same_day__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./same-day */ "./src/same-day.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 
 
 
@@ -487,7 +518,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1___default()(async function () {
+_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(async function () {
   const getElementByIdAsync = id => new Promise(resolve => {
     const getElement = () => {
       const element = document.getElementById(id);
@@ -500,16 +531,16 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_1___default()(async function () {
     getElement();
   });
   const container = await getElementByIdAsync('dhlpwc-app');
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.render)((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(App, null), container);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.render)(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(App, {}), container);
 });
 const App = () => {
-  const [postalCode, setPostalCode] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(window.dhlpwc_block_data['postal_code']);
-  const [countryCode, setCountryCode] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(window.dhlpwc_block_data['country_code']);
-  const [selectedShippingMethod, setSelectedShippingMethod] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(window.dhlpwc_block_data['initial_shipping_method']);
-  const [validationClass, setValidationClass] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)('dhlpwc_warning');
+  const [postalCode, setPostalCode] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(window.dhlpwc_block_data['postal_code']);
+  const [countryCode, setCountryCode] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(window.dhlpwc_block_data['country_code']);
+  const [selectedShippingMethod, setSelectedShippingMethod] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(window.dhlpwc_block_data['initial_shipping_method']);
+  const [validationClass, setValidationClass] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)('dhlpwc_warning');
 
   // Only run this once, intentionally no dependencies given
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     // Track selected shipping method
     document.addEventListener("change", trackSelectedShippingMethod);
     function trackSelectedShippingMethod(event) {
@@ -526,13 +557,20 @@ const App = () => {
     const observer = new MutationObserver(mutationList => {
       for (const mutation of mutationList) {
         if (mutation.type === "childList") {
-          setSelectedShippingMethod(document.getElementsByName('radio-control-0')[0].value);
+          let radioControlElement = document.getElementsByName('radio-control-0');
+          if (typeof radioControlElement !== "undefined" && typeof radioControlElement[0] !== "undefined" && typeof radioControlElement[0].value !== "undefined") {
+            setSelectedShippingMethod(radioControlElement[0].value);
+          }
         }
       }
     });
-    observer.observe(document.getElementsByName('radio-control-0')[0].parentElement.parentElement, {
-      childList: true
-    });
+    const radioControlElement = document.getElementsByName('radio-control-0');
+    // TODO clean up check
+    if (typeof radioControlElement !== "undefined" && typeof radioControlElement[0] !== "undefined" && typeof radioControlElement[0].parentElement !== "undefined" && typeof radioControlElement[0].parentElement.parentElement !== "undefined") {
+      observer.observe(radioControlElement[0].parentElement.parentElement, {
+        childList: true
+      });
+    }
 
     // TODO find a better method to retrieve address data instead of observing requests
     const nativeFetch = window.fetch;
@@ -564,33 +602,39 @@ const App = () => {
     };
   }, []);
   const deliveryTimeShippingMethods = ['dhlpwc-parcelshop', 'dhlpwc-home', 'dhlpwc-home-evening', 'dhlpwc-home-next-day', 'dhlpwc-home-no-neighbour', 'dhlpwc-home-no-neighbour-evening', 'dhlpwc-home-no-neighbour-next-day'];
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    const deliveryOptionsElement = document.getElementById('dhlpwc-shipping-method-delivery-options');
+    if (!deliveryOptionsElement) {
+      return;
+    }
     if (deliveryTimeShippingMethods.indexOf(selectedShippingMethod) !== -1) {
-      document.getElementById('dhlpwc-shipping-method-delivery-options').style.display = "block";
+      deliveryOptionsElement.style.display = "block";
     } else {
-      document.getElementById('dhlpwc-shipping-method-delivery-options').style.display = "none";
+      deliveryOptionsElement.style.display = "none";
     }
   }, [selectedShippingMethod]);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     id: "dhlpwc-shipping-method-delivery-options",
-    className: "dhlpwc-shipping-method-delivery-options"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "dhlpwc-delivery-options-header"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)('DHL Delivery options')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_delivery_times__WEBPACK_IMPORTED_MODULE_4__.DeliveryTimes, {
-    postalCode: postalCode,
-    countryCode: countryCode,
-    selectedShippingMethod: selectedShippingMethod
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_servicepoints__WEBPACK_IMPORTED_MODULE_3__.Servicepoints, {
-    postalCode: postalCode,
-    countryCode: countryCode,
-    selectedShippingMethod: selectedShippingMethod,
-    validationClass: validationClass,
-    setValidationClass: setValidationClass
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_same_day__WEBPACK_IMPORTED_MODULE_5__.SameDay, {
-    postalCode: postalCode,
-    countryCode: countryCode,
-    selectedShippingMethod: selectedShippingMethod
-  }));
+    className: "dhlpwc-shipping-method-delivery-options",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "dhlpwc-delivery-options-header",
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('DHL Delivery options')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_delivery_times__WEBPACK_IMPORTED_MODULE_3__.DeliveryTimes, {
+      postalCode: postalCode,
+      countryCode: countryCode,
+      selectedShippingMethod: selectedShippingMethod
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_servicepoints__WEBPACK_IMPORTED_MODULE_2__.Servicepoints, {
+      postalCode: postalCode,
+      countryCode: countryCode,
+      selectedShippingMethod: selectedShippingMethod,
+      validationClass: validationClass,
+      setValidationClass: setValidationClass
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_same_day__WEBPACK_IMPORTED_MODULE_4__.SameDay, {
+      postalCode: postalCode,
+      countryCode: countryCode,
+      selectedShippingMethod: selectedShippingMethod
+    })]
+  });
 };
 })();
 

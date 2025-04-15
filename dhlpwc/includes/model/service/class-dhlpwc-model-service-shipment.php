@@ -68,6 +68,11 @@ class DHLPWC_Model_Service_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
             return false;
         }
 
+        if (!$to_business && empty($shipment_data->receiver->name->last_name)) {
+            $this->set_error(self::CREATE_ERROR, ucfirst(sprintf(__('Receiver %s field is required on shipments to consumers.', 'dhlpwc'), __('last name', 'dhlpwc'))));
+            return false;
+        }
+
         // Validate if using hide_sender_data
         if ($hide_sender_data) {
             if ((empty($shipment_data->on_behalf_of->name->first_name) || empty($shipment_data->on_behalf_of->name->last_name)) && empty($shipment_data->on_behalf_of->name->company_name)) {

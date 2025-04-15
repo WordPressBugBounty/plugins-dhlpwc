@@ -1,5 +1,11 @@
 # DHL eCommerce (Benelux) for WooCommerce
  
+v2.1.12
+## Changes
+- Added a last name check for label creation
+- Fixed an incompatibility issue provisionally for WooCommerce 9.8.0 and higher
+- Known issue: ServicePoint Locator and delivery timeframes are not loaded properly for WooCommerce 9.8.0 and higher
+ 
 v2.1.11
 ## Changes
 - Fixed an issue with warning being generated when loading exclusions
