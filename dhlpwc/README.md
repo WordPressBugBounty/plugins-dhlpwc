@@ -1,5 +1,13 @@
 # DHL eCommerce (Benelux) for WooCommerce
  
+v2.1.14
+## Changes
+- updated translation keys and translations
+ 
+v2.1.13
+## Changes
+- updated translation keys and translations
+ 
 v2.1.12
 ## Changes
 - Added a last name check for label creation
