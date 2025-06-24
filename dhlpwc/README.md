@@ -1,5 +1,9 @@
 # DHL eCommerce (Benelux) for WooCommerce
  
+v2.1.16
+## Changes
+- Fixed feedback tab in the settings
+ 
 v2.1.14
 ## Changes
 - updated translation keys and translations

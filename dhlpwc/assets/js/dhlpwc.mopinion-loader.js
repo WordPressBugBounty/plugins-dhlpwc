@@ -1,4 +1,6 @@
 jQuery(document).ready(function ($) {
+  window.dhlparcel_shipping_mopinion_version = 'woocommerce';
+
   if (dhlpwc_mopinion_object.language !== 'nl') {
     window.dhlparcel_shipping_mopinion_language = dhlpwc_mopinion_object.language;
     window.dhlparcel_shipping_mopinion_framework = dhlpwc_mopinion_object.framework;
