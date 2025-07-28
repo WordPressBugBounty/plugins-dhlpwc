@@ -1,5 +1,15 @@
 # DHL eCommerce (Benelux) for WooCommerce
  
+v2.2.0
+## Changes
+- Maintenance release
+ 
+v2.1.18
+## Changes
+- Added wordpress 6.8.1 to the compatibility matrix
+- Removed obsolete versions of wordpress from compatibility matrix
+- Maintenance release
+
 v2.1.16
 ## Changes
 - Fixed feedback tab in the settings
