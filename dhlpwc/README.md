@@ -1,5 +1,9 @@
 # DHL eCommerce (Benelux) for WooCommerce
  
+v2.2.1
+## Changes
+- Updated compatibility for WordPress 6.8.2
+ 
 v2.2.0
 ## Changes
 - Maintenance release
