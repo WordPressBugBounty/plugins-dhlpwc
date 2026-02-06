@@ -63,7 +63,7 @@ class DHLPWC_Model_Service_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
             $this->set_error(self::CREATE_ERROR, ucfirst(sprintf(__('Receiver %s field is required.', 'dhlpwc'), __('street', 'dhlpwc'))));
             return false;
         }
-        if (empty($shipment_data->receiver->address->number) && $validate_address_number) {
+        if (empty($shipment_data->receiver->address->number) && $validate_address_number && !$shipment_data->receiver->skip_address_number_validation) {
             $this->set_error(self::CREATE_ERROR, ucfirst(sprintf(__('Receiver %s field is required.', 'dhlpwc'), __('house number', 'dhlpwc'))));
             return false;
         }
@@ -496,7 +496,6 @@ class DHLPWC_Model_Service_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
         $order = wc_get_order($order_id);
         if (isset($shipping_method['change_order_status_from_wc-' . $order->get_status()]) && $shipping_method['change_order_status_from_wc-' . $order->get_status()] === 'yes') {
             $order->update_status($shipping_method['change_order_status_to']);
-            $order->save();
         }
 
         return;

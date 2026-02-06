@@ -18,6 +18,7 @@ class DHLPWC_Model_API_Data_Shipment_Address extends DHLPWC_Model_API_Data_Abstr
     public $address;
     public $email;
     public $phone_number;
+    public $skip_address_number_validation = false;
 
 }
 

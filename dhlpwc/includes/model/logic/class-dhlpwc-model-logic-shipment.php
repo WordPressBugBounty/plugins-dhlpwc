@@ -6,7 +6,6 @@ if (!class_exists('DHLPWC_Model_Logic_Shipment')) :
 
 class DHLPWC_Model_Logic_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
 {
-
     public function prepare_data($order_id, $options = array(), $replace_shipping_address = null)
     {
         $order = wc_get_order($order_id);
@@ -234,6 +233,7 @@ class DHLPWC_Model_Logic_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
             ),
             'email'         => $address['email'],
             'phone_number' => $address['phone'],
+            'skip_address_number_validation' => isset($address['skip_number_validation']) ? $address['skip_number_validation'] : false,
         ));
     }
 
@@ -258,11 +258,17 @@ class DHLPWC_Model_Logic_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
         $skip_reverse_check = false;
         $cutout = '';
 
-        if (!isset($address['street'])) {
-            $address['street'] = trim(join(' ', array(
-                isset($address['address_1']) ? trim($address['address_1']) : '',
-                isset($address['address_2']) ? trim($address['address_2']) : ''
-            )));
+        $joinedAddressLines = trim(join(' ', array(
+            isset($address['address_1']) ? trim($address['address_1']) : '',
+            isset($address['address_2']) ? trim($address['address_2']) : ''
+        )));
+
+        if(isset($address['street'])) {
+            $address['skip_number_validation'] = false;
+        }
+        elseif ($this->shouldSplitAddress($joinedAddressLines)) {
+            $address['street'] = $joinedAddressLines;
+            $address['skip_number_validation'] = false;
 
             // Cutout starting special numbers from regular parsing logic
             $parsable_parts = explode(' ', trim($address['street']), 2);
@@ -336,6 +342,10 @@ class DHLPWC_Model_Logic_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
                 $address['street'] = $cutout . $address['street'];
             }
         }
+        else {
+            $address['street'] = $joinedAddressLines;
+            $address['skip_number_validation'] = true;
+        }
 
         // Be sure these fields are filled
         $address['number'] = isset($address['number']) ? $address['number'] : '';
@@ -362,6 +372,24 @@ class DHLPWC_Model_Logic_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
     {
         $shipping_method = get_option('woocommerce_dhlpwc_settings');
         return $shipping_method['account_id'];
+    }
+
+    /**
+     * Check if an address string should be split into street, houseNumber and addition.
+     * It should only be split if it starts or ends (but not both) with a digit.
+     * And only if the array contains only one number.
+     *
+     * @param string $addressString
+     */
+    protected function shouldSplitAddress($addressString)
+    {
+        preg_match_all('/\d+/', $addressString, $numberMatches);
+
+        $hasExactlyOneNumber = count($numberMatches[0]) === 1;
+        $hasNumberAtStart = preg_match('/^(\d+)\s+(.+)$/', $addressString) === 1;
+        $hasNumberAtEnd = preg_match('/^(.+?)\s+(\d+)$/', $addressString) === 1;
+
+        return $hasExactlyOneNumber && ($hasNumberAtStart xor $hasNumberAtEnd);
     }
 
 }

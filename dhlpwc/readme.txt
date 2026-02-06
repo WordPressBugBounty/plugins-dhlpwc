@@ -4,7 +4,7 @@ Tags:                 DHL, DHL eCommerce, WooCommerce, Shipping, Shipping rates
 Requires at least:    4.7
 Requires PHP:         5.6
 Tested up to:         6.8.2
-Stable tag:           2.2.1
+Stable tag:           2.2.3
 WC requires at least: 3.0.0
 WC tested up to:      9.0.2
 License:              GPL v3 or later
@@ -55,6 +55,9 @@ This plug-in can be used by online stores that ship orders from the Benelux regi
 A “Google Maps API Key” is required if you wish to display DHL locations on a map for your customers.
 
 == Changelog ==
+ 
+= 2.2.3 =
+- Updated compatibility for WordPress 6.8.3 and Woocommerce 10.3.5
  
 = 2.2.1 =
 - Updated compatibility for WordPress 6.8.2
@@ -531,3 +534,4 @@ If you were using DHL for WooCommerce plugin previously, this plugin will contin
 4. Print labels directly from the order screen
 5. Delivery times in the checkout
 6. ServicePoint locator in the checkout
+
