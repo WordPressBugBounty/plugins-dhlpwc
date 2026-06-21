@@ -1,5 +1,13 @@
 # DHL eCommerce (Benelux) for WooCommerce
  
+v2.2.5
+## Changes
+- Security related fixes
+ 
+v2.2.4
+## Changes
+- Security related fixes
+ 
 v2.2.3
 ## Changes
 - Updated compatibility for WordPress 6.8.3 and Woocommerce 10.3.5

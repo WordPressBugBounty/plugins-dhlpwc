@@ -102,7 +102,7 @@ jQuery(document).ready(function($) {
 
         var data = $.extend(true, $(this).data(), {
             action: 'dhlpwc_label_create',
-            security: $( '#dhlpwc-ajax-nonce' ).val(),
+            security: dhlpwc_metabox_object.security,
             post_id: dhlpwc_metabox_object.post_id,
             pieces: [],
             label_options: label_options,
@@ -167,6 +167,7 @@ jQuery(document).ready(function($) {
         var label_size = $('.dhlpwc-label-create-size:checked').val();
         var data = {
             'action': 'dhlpwc_label_delete',
+            'security': dhlpwc_metabox_object.security,
             post_id: $(this).data('post-id'),
             label_id: $(this).attr('label-id')
         };
@@ -204,6 +205,7 @@ jQuery(document).ready(function($) {
         var label_size = $('.dhlpwc-label-create-size:checked').val();
         var data = {
             'action': 'dhlpwc_label_print',
+            'security': dhlpwc_metabox_object.security,
             post_id: $(this).data('post-id'),
             label_id: $(this).attr('label-id')
         };
@@ -326,6 +328,7 @@ jQuery(document).ready(function($) {
 
         var data = {
             'action': 'dhlpwc_load_options',
+            'security': dhlpwc_metabox_object.security,
             post_id: dhlpwc_metabox_object.post_id,
             label_options: label_options,
             to_business: to_business
@@ -383,6 +386,7 @@ jQuery(document).ready(function($) {
 
         var data = {
             'action': 'dhlpwc_load_sizes',
+            'security': dhlpwc_metabox_object.security,
             post_id: dhlpwc_metabox_object.post_id,
             label_options: label_options,
             to_business: to_business

@@ -387,7 +387,7 @@ if (!class_exists('DHLPWC_Model_Service_Label_Metabox')) :
 
             if ($debug_label_requests && !empty($label['request'])) {
                 $actions[] = array(
-                    'url'           => admin_url('admin-ajax.php?action=dhlpwc_print_label_request&post_id=' . $post_id . '&label_id=' . $label['label_id']),
+                    'url'           => wp_nonce_url(admin_url('admin-ajax.php?action=dhlpwc_print_label_request&post_id=' . $post_id . '&label_id=' . $label['label_id']), 'dhlpwc_metabox', 'security'),
                     'name'          => __('Show Label Request', 'dhlpwc'),
                     'action'        => "dhlpwc_action_request",
                     'external_link' => false

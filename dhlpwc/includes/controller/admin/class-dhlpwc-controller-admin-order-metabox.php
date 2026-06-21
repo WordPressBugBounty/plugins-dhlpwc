@@ -45,6 +45,12 @@ class DHLPWC_Controller_Admin_Order_Metabox
 
     public function terminal_search()
     {
+        check_ajax_referer('dhlpwc_metabox', 'security');
+
+        if (!current_user_can('edit_shop_orders')) {
+            wp_die(__('You do not have sufficient permissions to perform this action.', 'dhlpwc'), 403);
+        }
+
         $post_id = wc_clean($_POST['post_id']);
         $search = wc_clean($_POST['search']);
 
@@ -79,6 +85,12 @@ class DHLPWC_Controller_Admin_Order_Metabox
 
     public function parcelshop_search()
     {
+        check_ajax_referer('dhlpwc_metabox', 'security');
+
+        if (!current_user_can('edit_shop_orders')) {
+            wp_die(__('You do not have sufficient permissions to perform this action.', 'dhlpwc'), 403);
+        }
+
         $post_id = wc_clean($_POST['post_id']);
         $search = wc_clean($_POST['search']);
 
@@ -116,6 +128,12 @@ class DHLPWC_Controller_Admin_Order_Metabox
      */
     public function create_label()
     {
+        check_ajax_referer('dhlpwc_metabox', 'security');
+
+        if (!current_user_can('edit_shop_orders')) {
+            wp_die(__('You do not have sufficient permissions to perform this action.', 'dhlpwc'), 403);
+        }
+
         $post_id = wc_clean($_POST['post_id']);
         $label_options = isset($_POST['label_options']) && is_array($_POST['label_options']) ? wc_clean($_POST['label_options']) : array();
         $label_option_data = isset($_POST['label_option_data']) && is_array($_POST['label_option_data']) ? array_map(function ($var) {
@@ -163,6 +181,12 @@ class DHLPWC_Controller_Admin_Order_Metabox
      */
     public function delete_label()
     {
+        check_ajax_referer('dhlpwc_metabox', 'security');
+
+        if (!current_user_can('edit_shop_orders')) {
+            wp_die(__('You do not have sufficient permissions to perform this action.', 'dhlpwc'), 403);
+        }
+
         $post_id = wc_clean($_POST['post_id']);
         $label_id = wc_clean($_POST['label_id']);
 
@@ -186,6 +210,12 @@ class DHLPWC_Controller_Admin_Order_Metabox
      */
     public function print_label()
     {
+        check_ajax_referer('dhlpwc_metabox', 'security');
+
+        if (!current_user_can('edit_shop_orders')) {
+            wp_die(__('You do not have sufficient permissions to perform this action.', 'dhlpwc'), 403);
+        }
+
         $post_id = wc_clean($_POST['post_id']);
         $label_id = wc_clean($_POST['label_id']);
 
@@ -213,6 +243,12 @@ class DHLPWC_Controller_Admin_Order_Metabox
      */
     public function print_label_request()
     {
+        check_ajax_referer('dhlpwc_metabox', 'security');
+
+        if (!current_user_can('edit_shop_orders')) {
+            wp_die(__('You do not have sufficient permissions to perform this action.', 'dhlpwc'), 403);
+        }
+
         $post_id = wc_clean($_GET['post_id']);
         $label_id = wc_clean($_GET['label_id']);
 
@@ -236,6 +272,12 @@ class DHLPWC_Controller_Admin_Order_Metabox
 
     public function load_options()
     {
+        check_ajax_referer('dhlpwc_metabox', 'security');
+
+        if (!current_user_can('edit_shop_orders')) {
+            wp_die(__('You do not have sufficient permissions to perform this action.', 'dhlpwc'), 403);
+        }
+
         $post_id = wc_clean($_POST['post_id']);
         $to_business = isset($_POST['to_business']) && wc_clean($_POST['to_business']) == 'yes' ? true : false;
 
@@ -256,6 +298,12 @@ class DHLPWC_Controller_Admin_Order_Metabox
 
     public function load_sizes()
     {
+        check_ajax_referer('dhlpwc_metabox', 'security');
+
+        if (!current_user_can('edit_shop_orders')) {
+            wp_die(__('You do not have sufficient permissions to perform this action.', 'dhlpwc'), 403);
+        }
+
         $post_id = wc_clean($_POST['post_id']);
 
         $label_options = isset($_POST['label_options']) && is_array($_POST['label_options']) ? wc_clean($_POST['label_options']) : array();
@@ -460,16 +508,19 @@ class DHLPWC_Controller_Admin_Order_Metabox
             wp_enqueue_script( 'dhlpwc-metabox-action', DHLPWC_PLUGIN_URL . 'assets/js/dhlpwc.metabox.js', array('jquery'), DHLPWC_PLUGIN_VERSION);
             wp_localize_script( 'dhlpwc-metabox-action', 'dhlpwc_metabox_object', array(
                 'post_id' => $order->get_id(),
+                'security' => wp_create_nonce('dhlpwc_metabox'),
             ));
 
             wp_enqueue_script( 'dhlpwc-metabox-parcelshop-action', DHLPWC_PLUGIN_URL . 'assets/js/dhlpwc.metabox.parcelshop.js', array('jquery'), DHLPWC_PLUGIN_VERSION);
             wp_localize_script( 'dhlpwc-metabox-parcelshop-action', 'dhlpwc_metabox_parcelshop_object', array(
                 'post_id' => $order->get_id(),
+                'security' => wp_create_nonce('dhlpwc_metabox'),
             ));
 
             wp_enqueue_script( 'dhlpwc-metabox-terminal-action', DHLPWC_PLUGIN_URL . 'assets/js/dhlpwc.metabox.terminal.js', array('jquery'), DHLPWC_PLUGIN_VERSION);
             wp_localize_script( 'dhlpwc-metabox-terminal-action', 'dhlpwc_metabox_terminal_object', array(
                 'post_id' => $order->get_id(),
+                'security' => wp_create_nonce('dhlpwc_metabox'),
             ));
         }
     }

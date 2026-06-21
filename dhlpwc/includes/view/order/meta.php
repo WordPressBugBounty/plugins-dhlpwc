@@ -14,7 +14,6 @@
 <?php endif ?>
 
 
-<input type="hidden" name="my_ajax_nonce" value="<?php echo wp_create_nonce('my_ajax_action') ?>" />
 <div class="widefat">
     <button class="button button-primary" id="dhlpwc-label-create" type="submit"><?php echo esc_html(__('Create', 'dhlpwc')) ?></button>
     <button class="button" id="dhlpwc-label-add-piece" type="button"><?php echo esc_html(__('Add another package', 'dhlpwc')) ?></button>

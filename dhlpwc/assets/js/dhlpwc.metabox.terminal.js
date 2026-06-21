@@ -32,6 +32,7 @@ jQuery(document).ready(function($) {
         // Make AJAX call to get the view for div
         var data = {
             'action': 'dhlpwc_metabox_terminal_search',
+            'security': dhlpwc_metabox_terminal_object.security,
             'post_id': dhlpwc_metabox_terminal_object.post_id,
             'search': dhlpwc_metabox_terminal_timeout_search
         };
