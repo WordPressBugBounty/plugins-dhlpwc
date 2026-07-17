@@ -258,16 +258,18 @@ class DHLPWC_Model_Logic_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
         $skip_reverse_check = false;
         $cutout = '';
 
-        $joinedAddressLines = trim(join(' ', array(
-            isset($address['address_1']) ? trim($address['address_1']) : '',
-            isset($address['address_2']) ? trim($address['address_2']) : ''
-        )));
+        $address1 = isset($address['address_1']) ? trim($address['address_1']) : '';
+        $address2 = isset($address['address_2']) ? trim($address['address_2']) : '';
+        $joinedAddressLines = trim($address1 . ' ' . $address2);
+
+        $shouldSplitJoined = $this->shouldSplitAddress($joinedAddressLines);
+        $shouldSplitAddress1Only = !$shouldSplitJoined && strlen($address2) > 0 && $this->shouldSplitAddress($address1);
 
         if(isset($address['street'])) {
             $address['skip_number_validation'] = false;
         }
-        elseif ($this->shouldSplitAddress($joinedAddressLines)) {
-            $address['street'] = $joinedAddressLines;
+        elseif ($shouldSplitJoined || $shouldSplitAddress1Only) {
+            $address['street'] = $shouldSplitJoined ? $joinedAddressLines : $address1;
             $address['skip_number_validation'] = false;
 
             // Cutout starting special numbers from regular parsing logic
@@ -341,10 +343,15 @@ class DHLPWC_Model_Logic_Shipment extends DHLPWC_Model_Core_Singleton_Abstract
             if (isset($address['street'])) {
                 $address['street'] = $cutout . $address['street'];
             }
+
+            // When splitting address_1 only, re-attach address_2 to preserve apartment/building info
+            if ($shouldSplitAddress1Only && strlen($address2) > 0) {
+                $address['street'] = trim($address['street'] . ' ' . $address2);
+            }
         }
         else {
             $address['street'] = $joinedAddressLines;
-            $address['skip_number_validation'] = true;
+            $address['skip_number_validation'] = preg_match('/\d/', $joinedAddressLines) === 1;
         }
 
         // Be sure these fields are filled

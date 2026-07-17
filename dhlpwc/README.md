@@ -1,5 +1,13 @@
 # DHL eCommerce (Benelux) for WooCommerce
  
+v2.2.6
+## Changes
+- Fixed house number validation rule being bypassed
+ 
+v2.2.6
+## Changes
+- Fixed house number validation rule being bypassed
+
 v2.2.5
 ## Changes
 - Security related fixes
