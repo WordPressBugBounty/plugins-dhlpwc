@@ -3,10 +3,10 @@ Contributors:         dhlparcel, dhlsupport, shindhl, ronoerlemans, dennisdhl
 Tags:                 DHL, DHL eCommerce, WooCommerce, Shipping, Shipping rates
 Requires at least:    4.7
 Requires PHP:         5.6
-Tested up to:         6.8.2
-Stable tag:           2.2.6
+Tested up to:         7.0.2
+Stable tag:           2.2.7
 WC requires at least: 3.0.0
-WC tested up to:      9.0.2
+WC tested up to:      10.9.4
 License:              GPL v3 or later
 License URI:          https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -56,8 +56,8 @@ A “Google Maps API Key” is required if you wish to display DHL locations on 
 
 == Changelog ==
  
-= 2.2.6 =
-- Fixed house number validation rule being bypassed
+= 2.2.7 =
+- Updated compatibility for WordPress 7.0.2 & WooCommerce 10.9.4
  
 = 2.2.6 =
 - Fixed house number validation rule being bypassed
