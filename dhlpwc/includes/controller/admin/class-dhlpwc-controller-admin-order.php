@@ -138,13 +138,17 @@ class DHLPWC_Controller_Admin_Order
 
     public function add_delivery_times_filter($views)
     {
-        $result = wc_get_orders(array(
+        $count = (int) wc_get_orders(array(
             'status' => $this->get_available_statuses(),
             'meta_query' => array(array(
-            'key'     => DHLPWC_Model_Service_Delivery_Times::ORDER_TIME_SELECTION,
-            'value' => serialize('timestamp'),
-            'compare' => 'LIKE',
-        ))));
+                'key'     => DHLPWC_Model_Service_Delivery_Times::ORDER_TIME_SELECTION,
+                'value'   => serialize('timestamp'),
+                'compare' => 'LIKE',
+            )),
+            'return' => 'ids',
+            'limit'  => -1,
+            'paginate' => true,
+        ))->total;
 
         $url = 'edit.php?post_type=shop_order&orderby=dhlpwc_delivery_date&order=asc';
         $settings_service = DHLPWC_Model_Service_Settings::instance();
@@ -156,7 +160,7 @@ class DHLPWC_Controller_Admin_Order
             '<a href="'.admin_url($url).'">',
             esc_attr(__('Delivery date', 'dhlpwc')),
             '</a>',
-            '<span class="count">(' . count($result) . ')</span>');
+            '<span class="count">(' . $count . ')</span>');
 
         return $views;
     }
@@ -206,11 +210,15 @@ class DHLPWC_Controller_Admin_Order
 
     public function add_delivery_time_column($columns)
     {
-        $orders = wc_get_orders(array('meta_query' => array(array(
-            'key'     => DHLPWC_Model_Service_Delivery_Times::ORDER_TIME_SELECTION,
-            'value' => serialize('timestamp'),
-            'compare' => 'LIKE',
-        ))));
+        $orders = wc_get_orders(array(
+            'meta_query' => array(array(
+                'key'     => DHLPWC_Model_Service_Delivery_Times::ORDER_TIME_SELECTION,
+                'value'   => serialize('timestamp'),
+                'compare' => 'LIKE',
+            )),
+            'return' => 'ids',
+            'limit'  => 1,
+        ));
 
         if (count($orders) > 0) {
             $columns['dhlpwc_delivery_time'] = __('Delivery date', 'dhlpwc');
