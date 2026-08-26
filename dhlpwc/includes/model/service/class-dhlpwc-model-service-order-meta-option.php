@@ -343,7 +343,10 @@ class DHLPWC_Model_Service_Order_Meta_Option extends DHLPWC_Model_Core_Singleton
     public function send_with_bp($order_id)
     {
         /** @var WC_Order $order */
-        $order = new WC_Order($order_id);
+        $order = wc_get_order($order_id);
+        if (!$order) {
+            return false;
+        }
         $eligible = true;
         $fill_percentage = 0;
 
@@ -385,7 +388,10 @@ class DHLPWC_Model_Service_Order_Meta_Option extends DHLPWC_Model_Core_Singleton
     public function get_parcelshop($order_id)
     {
         /** @var WC_Order $order */
-        $order = new WC_Order($order_id);
+        $order = wc_get_order($order_id);
+        if (!$order) {
+            return null;
+        }
 
         $service = DHLPWC_Model_Service_Order_Meta_Option::instance();
         $parcelshop_meta = $service->get_option_preference($order->get_id(), DHLPWC_Model_Meta_Order_Option_Preference::OPTION_PS);

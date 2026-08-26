@@ -616,7 +616,10 @@ class DHLPWC_Model_Logic_Access_Control extends DHLPWC_Model_Core_Singleton_Abst
         }
 
         if ($args && isset($args['order_id'])) {
-            $order = new WC_Order($args['order_id']);
+            $order = wc_get_order($args['order_id']);
+            if (!$order) {
+                return false;
+            }
 
             if (isset($shipping_method['minimum_value_before_insurance']) && $order->get_subtotal() < $shipping_method['minimum_value_before_insurance']) {
                 return false;

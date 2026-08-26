@@ -54,7 +54,10 @@ class DHLPWC_Controller_Admin_Order_Metabox
         $post_id = wc_clean($_POST['post_id']);
         $search = wc_clean($_POST['search']);
 
-        $order = new WC_Order($post_id);
+        $order = wc_get_order($post_id);
+        if (!$order) {
+            wp_send_json(array('message' => __('Order not found.', 'dhlpwc')), 404);
+        }
         $country = $order->get_shipping_country();
 
         $service = DHLPWC_Model_Service_Terminal::instance();
@@ -94,7 +97,10 @@ class DHLPWC_Controller_Admin_Order_Metabox
         $post_id = wc_clean($_POST['post_id']);
         $search = wc_clean($_POST['search']);
 
-        $order = new WC_Order($post_id);
+        $order = wc_get_order($post_id);
+        if (!$order) {
+            wp_send_json(array('message' => __('Order not found.', 'dhlpwc')), 404);
+        }
         $country = $order->get_shipping_country();
 
         $service = DHLPWC_Model_Service_Parcelshop::instance();
@@ -340,6 +346,9 @@ class DHLPWC_Controller_Admin_Order_Metabox
     public function metabox_content($post_or_order_object)
     {
         $order = ( $post_or_order_object instanceof WP_Post ) ? wc_get_order( $post_or_order_object->ID ) : $post_or_order_object;
+        if (!$order) {
+            return;
+        }
 
         echo dhlpwc_esc_template($this->load_all($order->get_id()));
     }

@@ -615,7 +615,10 @@ class DHLPWC_Controller_Admin_Order
                 }
                 break;
             case 'shipping_address':
-                $this->parcelshop_info(new WC_Order($order_id), true);
+                $order = wc_get_order($order_id);
+                if ($order) {
+                    $this->parcelshop_info($order, true);
+                }
                 break;
         }
     }

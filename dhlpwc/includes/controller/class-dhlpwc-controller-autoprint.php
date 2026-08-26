@@ -22,7 +22,7 @@ class DHLPWC_Controller_Autoprint
             return;
         }
 
-        $order = new WC_Order($order_id);
+        $order = wc_get_order($order_id);
         if (
             !$order ||
             !$order->get_id() ||

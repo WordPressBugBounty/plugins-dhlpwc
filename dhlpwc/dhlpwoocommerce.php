@@ -4,12 +4,12 @@
  * Plugin URI:           https://www.dhlecommerce.nl
  * Description:          This is the official DHL eCommerce (Benelux) for WooCommerce plugin.
  * Author:               DHL eCommerce
- * Version:              2.2.8
+ * Version:              2.2.9
  * Requires at least:    4.7
- * Tested up to:         7.0.2
+ * Tested up to:         7.1
  * Requires PHP:         5.6
  * WC requires at least: 3.0.0
- * WC tested up to:      10.9.4
+ * WC tested up to:      11.0.1
  * License:              GPL v3 or later
  * License URI:          https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:          dhlpwc
@@ -51,7 +51,7 @@ class DHLPWC
         include_once('includes/class-dhlpwc-autoloader.php');
 
         // Set constants
-        $this->define('DHLPWC_PLUGIN_VERSION', '2.2.8');
+        $this->define('DHLPWC_PLUGIN_VERSION', '2.2.9');
         $this->define('DHLPWC_PLUGIN_FILE', __FILE__);
         $this->define('DHLPWC_PLUGIN_BASENAME', plugin_basename(__FILE__));
         $this->define('DHLPWC_PLUGIN_DIR', plugin_dir_path(__FILE__));

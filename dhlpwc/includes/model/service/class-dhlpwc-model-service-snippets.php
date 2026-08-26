@@ -16,7 +16,10 @@ add_filter('dhlpwc_default_reference_value', 'dhlpwc_change_reference_value', 10
 function dhlpwc_change_reference_value($reference_value, $order_id)
 {
     // Set a difference reference value
-    $order = new WC_Order($order_id);
+    $order = wc_get_order($order_id);
+    if (!$order) {
+        return $reference_value;
+    }
     $new_reference_value = $order->get_order_number();
     if (!$new_reference_value) {
         return $reference_value;
@@ -36,7 +39,10 @@ add_filter('dhlpwc_default_reference2_value', 'dhlpwc_change_reference2_value', 
 function dhlpwc_change_reference2_value($reference2_value, $order_id)
 {
     // Set a difference reference value
-    $order = new WC_Order($order_id);
+    $order = wc_get_order($order_id);
+    if (!$order) {
+        return $reference2_value;
+    }
     $new_reference2_value = $order->get_order_number();
     if (!$new_reference2_value) {
         return $reference2_value;
@@ -56,7 +62,10 @@ add_action('dhlpwc_create_label', 'dhlpwc_add_order_note_on_create_label', 10, 2
 function dhlpwc_add_order_note_on_create_label($order_id, $label_data)
 {
     // Create an order note with create label data
-    $order = new WC_Order($order_id);
+    $order = wc_get_order($order_id);
+    if (!$order) {
+        return;
+    }
     if ($label_data['is_return'] !== true) {
         $note = __('Creating label with tracking code: ' . $label_data['tracker_code']);
     } else {

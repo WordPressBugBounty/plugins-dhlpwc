@@ -1,5 +1,9 @@
 # DHL eCommerce (Benelux) for WooCommerce
  
+v2.2.9
+## Changes
+- Updated compatibility for WordPress 7.1 & WooCommerce 11.0.1
+ 
 v2.2.8
 ## Changes
 - Fixed a memory issue on the orders page

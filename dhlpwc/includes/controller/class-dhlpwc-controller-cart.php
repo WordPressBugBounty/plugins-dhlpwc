@@ -410,7 +410,7 @@ class DHLPWC_Controller_Cart
     public function load_delivery_time_scripts()
     {
         if (is_cart() || is_checkout()) {
-            $select_woo_active = $this->version_check('3.2');
+            $select_woo_active = DHLPWC_Model_Service_Compatibility::instance()->woocommerce_version_is_at_least('3.2');
             $dependencies = array('jquery');
             if ($select_woo_active) {
                 $dependencies[] = 'selectWoo';
@@ -449,17 +449,6 @@ class DHLPWC_Controller_Cart
             $formatted[] = strlen($part) > 1 ? ucfirst(strtolower($part)) : "'".strtolower($part);
         }
         return implode(' ', $formatted);
-    }
-
-    protected function version_check($version = '3.2')
-    {
-        if (class_exists('WooCommerce')) {
-            global $woocommerce;
-            if (version_compare($woocommerce->version, $version, ">=")) {
-                return true;
-            }
-        }
-        return false;
     }
 
 }

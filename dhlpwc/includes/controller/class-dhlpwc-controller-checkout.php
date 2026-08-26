@@ -10,7 +10,12 @@ class DHLPWC_Controller_Checkout
     public function __construct()
     {
         add_filter('woocommerce_validate_postcode', array($this, 'validate_postcode'), 10, 3);
-        add_action('woocommerce_checkout_update_order_meta', array($this, 'add_option_meta'), 10, 2);
+        $compatibility_service = DHLPWC_Model_Service_Compatibility::instance();
+        if ($compatibility_service->woocommerce_version_is_at_least('8.9')) {
+            add_action('woocommerce_checkout_order_created', array($this, 'add_option_meta_from_order'), 10, 1);
+        } else {
+            add_action('woocommerce_checkout_update_order_meta', array($this, 'add_option_meta'), 10, 2);
+        }
         add_action('woocommerce_store_api_checkout_order_processed', array($this, 'add_option_meta_block_checkout'), 10, 1);
 
         add_action('wp_loaded', array($this, 'set_parcelshop_hooks'));
@@ -53,7 +58,12 @@ class DHLPWC_Controller_Checkout
 
     public function add_option_meta_block_checkout($order)
     {
-        if (!is_array(WC()->session->get( 'chosen_shipping_methods' ))) {
+        $this->add_option_meta_from_order($order);
+    }
+
+    public function add_option_meta_from_order($order)
+    {
+        if (!$order instanceof WC_Order || !is_array(WC()->session->get( 'chosen_shipping_methods' ))) {
             return;
         }
 
